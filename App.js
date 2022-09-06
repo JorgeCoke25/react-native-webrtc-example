@@ -20,6 +20,7 @@ import {
 import {useState} from 'react';
 
 import firestore from '@react-native-firebase/firestore';
+import {startWebcam} from "./callFunctions/startWebcam";
 
 const App = () => {
   const [remoteStream, setRemoteStream] = useState(null);
@@ -37,37 +38,6 @@ const App = () => {
       },
     ],
     iceCandidatePoolSize: 10,
-  };
-
-  const startWebcam = async () => {
-    pc.current = new RTCPeerConnection(servers);
-    const local = await mediaDevices.getUserMedia({
-      video: true,
-      audio: true,
-    });
-    pc.current.addStream(local);
-    setLocalStream(local);
-    const remote = new MediaStream();
-    setRemoteStream(remote);
-
-    // Push tracks from local stream to peer connection
-    local.getTracks().forEach(track => {
-      console.log(pc.current.getLocalStreams());
-      pc.current.getLocalStreams()[0].addTrack(track);
-    });
-
-    // Pull tracks from remote stream, add to video stream
-    pc.current.ontrack = event => {
-      event.streams[0].getTracks().forEach(track => {
-        remote.addTrack(track);
-      });
-    };
-
-    pc.current.onaddstream = event => {
-      setRemoteStream(event.stream);
-    };
-
-    setWebcamStarted(true);
   };
 
   const startCall = async () => {
@@ -176,7 +146,7 @@ const App = () => {
         )}
         <View style={styles.buttons}>
           {!webcamStarted && (
-            <Button title="Start webcam" onPress={startWebcam} />
+            <Button title="Start webcam" onPress={()=>startWebcam(pc,setLocalStream,setRemoteStream,setWebcamStarted,servers)} />
           )}
           {webcamStarted && <Button title="Start call" onPress={startCall} />}
           {webcamStarted && (

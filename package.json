@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android_dev": "react-native run-android --port 8082 --deviceId b5a2b590",
-    "android_em": "react-native run-android --deviceId emulator-5554",
+    "android_dev": "react-native run-android --deviceId b5a2b590",
+    "android_em": "react-native run-android --port 8082 --deviceId R5CT107S6GA",
     "ios": "react-native run-ios",
     "start_dev": "react-native start --port 8082",
     "start_em": "react-native start",
@@ -16,7 +16,7 @@
     "@react-native-firebase/firestore": "^14.11.1",
     "react": "17.0.2",
     "react-native": "0.67.3",
-    "react-native-webrtc": "^1.94.2"
+    "react-native-webrtc": "^1.100.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
