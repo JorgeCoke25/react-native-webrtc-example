@@ -4,7 +4,18 @@ export async function startWebcam(pc,setLocalStream,setRemoteStream,setWebcamSta
     pc.current = new RTCPeerConnection(servers);
     const local = await mediaDevices.getUserMedia({
         video: true,
-        audio: true,
+        audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            googEchoCancellation: true,
+            googAutoGainControl: true,
+            googNoiseSuppression: true,
+            googHighpassFilter: true,
+            googTypingNoiseDetection: true,
+            googNoiseReduction: true,
+            volume: 2.0,
+        }
     });
     pc.current.addStream(local);
     setLocalStream(local);

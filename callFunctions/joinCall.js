@@ -15,7 +15,7 @@ export async function joinCall(pc){
     const channelDocument = await channelDoc.get();
     const channelData = channelDocument.data();
 
-    const offerDescription = channelData.offer;
+    const offerDescription = channelData.offerc;
 
     await pc.current.setRemoteDescription(
         new RTCSessionDescription(offerDescription),
