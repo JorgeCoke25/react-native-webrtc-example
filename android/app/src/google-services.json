@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "832770840864",
-    "project_id": "webrtc-example-1da93",
-    "storage_bucket": "webrtc-example-1da93.appspot.com"
+    "project_number": "25401569149",
+    "project_id": "wildlongevity",
+    "storage_bucket": "wildlongevity.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:832770840864:android:fd68c83f2529f18e4d5f45",
+        "mobilesdk_app_id": "1:25401569149:android:2973beab3ee75bfdede614",
         "android_client_info": {
           "package_name": "com.reactnativewebrtcexample"
         }
       },
       "oauth_client": [
         {
-          "client_id": "832770840864-v1rmcr2gg0s13l7qdpaeot3k3tm37sou.apps.googleusercontent.com",
+          "client_id": "25401569149-f9m4bqteqmeb22ef7nvra8f5dm9mqkh7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyByVkklv7tLYQFRXYm5jGnIYFsYKYwnufc"
+          "current_key": "AIzaSyAQH9vJRkgAcEapWJ1zAIBQ3CC7urbEyVk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "832770840864-v1rmcr2gg0s13l7qdpaeot3k3tm37sou.apps.googleusercontent.com",
+              "client_id": "25401569149-f9m4bqteqmeb22ef7nvra8f5dm9mqkh7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

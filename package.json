@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android_dev": "react-native run-android --deviceId b5a2b590",
-    "android_em": "react-native run-android --port 8082 --deviceId R5CT107S6GA",
+    "android_em": "react-native run-android  --deviceId R5CT107S6GA",
     "ios": "react-native run-ios",
     "start_dev": "react-native start --port 8082",
     "start_em": "react-native start",
