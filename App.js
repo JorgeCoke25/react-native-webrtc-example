@@ -4,7 +4,7 @@ import {
   Button,
   KeyboardAvoidingView,
   SafeAreaView,
-  StyleSheet,
+  StyleSheet, Text,
   TextInput,
   View,
 } from 'react-native';
@@ -21,10 +21,12 @@ import {useState} from 'react';
 
 import firestore from '@react-native-firebase/firestore';
 import {startWebcam} from "./callFunctions/startWebcam";
-import {startCall} from "./callFunctions/startCall";
-import {joinCall} from "./callFunctions/joinCall";
+import reactFiberErrorDialog from "react-native/Libraries/Core/ReactFiberErrorDialog";
+import {stopCall} from "./callFunctions/stopCall";
+import { joinCall } from "./callFunctions/joinCall";
+import { startCall } from "./callFunctions/startCall";
 
-const App = () => {
+const App = ({navigation}) => {
   const [remoteStream, setRemoteStream] = useState(null);
   const [webcamStarted, setWebcamStarted] = useState(false);
   const [localStream, setLocalStream] = useState(null);
@@ -63,14 +65,19 @@ const App = () => {
             mirror
           />
         )}
+        {!webcamStarted && (
+          <Text style={{fontSize:29}}>Welcome doctor</Text>
+        )}
         <View style={styles.buttons}>
           {!webcamStarted && (
-            <Button title="Start webcam" onPress={()=>startWebcam(pc,setLocalStream,setRemoteStream,setWebcamStarted,servers)} />
+              <View style={{width:200}}>
+                <Button title="Start webcam" onPress={()=>startWebcam(pc,setLocalStream,setRemoteStream,setWebcamStarted,servers)} />
+              </View>
           )}
           {webcamStarted && <Button title="Start call" onPress={()=>startCall(pc,setChannelId)} />}
           {webcamStarted && (
             <View style={{flexDirection: 'row'}}>
-              <Button title="Join call" onPress={()=>joinCall(pc)} />
+              <Button title="Join call" onPress={joinCall} />
               <TextInput
                 value={channelId}
                 placeholder="callId"
@@ -79,6 +86,18 @@ const App = () => {
                 onChangeText={newText => setChannelId(newText)}
               />
             </View>
+          )}
+          {webcamStarted && (
+              <Button
+                  title="Stop Call"
+                  onPress={() => {
+                    stopCall(pc, localStream).then(r =>{
+                        setWebcamStarted(false)
+                        setLocalStream(false)
+                        setRemoteStream(false)
+                    });
+                  }}
+              />
           )}
         </View>
       </SafeAreaView>
@@ -96,7 +115,7 @@ const styles = StyleSheet.create({
   },
   stream: {
     flex: 2,
-    width: 200,
+    width: 250,
     height: 200,
   },
   buttons: {
